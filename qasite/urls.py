@@ -18,8 +18,33 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
 
+from langchain.schema import Document
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import Chroma
+
 def index(request):
-    return render(request, 'index.html')
+    embeddings = OpenAIEmbeddings(model='text-embedding-ada-002')
+    database = Chroma(persist_directory='./database', embedding_function=embeddings)
+    docs_info = database.get()
+    metadatas = docs_info['metadatas']
+    contents = docs_info['documents']
+    
+    qa = []
+    
+    for i in range(len(contents)):
+        content_str = contents[i]
+        content_lst = content_str.split('\n')
+        q = content_lst[0]
+        a = content_lst[1]
+        cate = metadatas[i]['category']
+        data = {
+            'question': q, 
+            'answer': a, 
+            'category': cate
+        }
+        qa.append(data)
+    
+    return render(request, 'index.html', {'qa': qa})
 
 urlpatterns = [
     path('admin/', admin.site.urls),
