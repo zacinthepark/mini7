@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>AivleQA</title>
+    <meta charset="utf-8"> 
+    <link rel="icon" type="image/png" sizes="16x16" href="https://aivle.kt.co.kr/img/icon/favicon-16x16.png">   
+    <link rel="stylesheet" href="{% static 'homepage.css' %}" />    
+</head>
+<body class="main">
+    <div class="wrap mainwrap open sd_start">
+        <header>
+            <div class="inner h_max">
+                <h1>Aivle QA</h1>
+            </div>
+        </header>
+        <div class="content">
+            <div class="inner h_max">
+                <div class="tab_box">
+                    <ul>
+                        <li class="tab tab1 on"><span><a href="#tab1"><p>모집/선발</p></a></span></li>
+                        <li class="tab tab2"><span><a href="#tab2"><p>교육/수강</p></a></span></li>
+                        <li class="tab tab3"><span><a href="#tab3"><p>국민내일배움카드</p></a></span></li>
+                        <li class="tab tab4"><span><a href="#tab4"><p>채용연계</p></a></span></li>
+                        <li class="tab tab5"><span><a href="#tab5"><p>교육생 지원사항</p></a></span></li>
+                        <li class="tab tab6 wh"><span><a href="#tab6"><p>기타</p></a></span></li>
+                    </ul>
+                </div>
+                <div class="con_box">
+                    <ul>
+                        <li class="box1 on ani"> ::before<div class=area></div></li>
+                        <li class="box2"><div class=area></div></li>
+                        <li class="box3"><div class=area></div></li>
+                        <li class="box4"><div class=area></div></li>
+                        <li class="box5"><div class=area></div></li>
+                        <li class="box6"><div class=area></div></li>
+                    </ul>
+                    <div class="side_txt">
+                        <p>가장 많이 하는 질문!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="inner h_max">
+                <div class="brand">
+                    <ul>
+                        <li class="b1"><p>박정민</p></li>
+                        <li class="b2"><p>박진우</p></li>
+                        <li class="b3"><p>박현일</p></li>
+                        <li class="b4"><p>배지현</p></li>
+                        <li class="b5"><p>심연준</p></li>
+                        <li class="b6"><p>윤석일</p></li>
+                        <li class="b7"><p>이승연</p></li>
+                        <li class="b8"><p>이정호</p></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Chatbot button -->
+    <div class="chatbot-container">
+        <button class="chatbot-button" onclick="openChatbot()">💬</button>
+    </div>
+
+    <!-- Chatbot iframe or modal (hidden by default) -->
+    <div id="chatbot-modal" class="chatbot-modal">
+        <div class="chatbot-content">
+            <span class="close" onclick="closeChatbot()">&times;</span>
+            <!-- Embed your chatbot here, e.g., using an iframe -->
+            {% comment %} <iframe src="your-chatbot-url" frameborder="0"></iframe> {% endcomment %}
+        </div>
+    </div>
+
+    <script>
+        function openChatbot() {
+            document.getElementById("chatbot-modal").style.display = "block";
+        }
+
+        function closeChatbot() {
+            document.getElementById("chatbot-modal").style.display = "none";
+        }
+    </script>
+</body>
+</html>
