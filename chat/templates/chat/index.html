@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>KT Chat</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'chat/chatpage.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#chat-form').on('submit', function(event) {
+                event.preventDefault();
+                sendMessage();
+            });
+    
+            $('#question').on('keypress', function(event) {
+                // Enter Key
+                if (event.which == 13) {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+    
+            function sendMessage() {
+                var question = $('#question').val();
+                if (question.trim() === '') {
+                    return;
+                }
+                $('#question').val('');
+                // Deactivate Send Button
+                $('#send-button').prop('disabled', true);
+                var userMessage = '<div class="message sent">' + question + '</div>';
+                var loadingMessage = '<div class="message loading"><img src="{% static "chat/fading_wheel.gif" %}" alt="Loading..."></div>';
+                $('#chat-body').append(userMessage);
+                $('#chat-body').append(loadingMessage);
+                $('#chat-body').scrollTop($('#chat-body')[0].scrollHeight);
+    
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "chat:chat" %}',
+                    data: {
+                        'question': question,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        $('.loading').remove();
+                        var botMessage = '<div class="message received">' + response.answer + '</div>';
+                        $('#chat-body').append(botMessage);
+                        $('#chat-body').scrollTop($('#chat-body')[0].scrollHeight);
+                        // Activate Send Button
+                        $('#send-button').prop('disabled', false);
+                    },
+                    error: function(response) {
+                        $('.loading').remove();
+                        console.log('Error:', response);
+                        // Deactivate Send Button
+                        $('#send-button').prop('disabled', false);
+                    }
+                });
+            }
+        });
+    </script>    
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            KT Chat
+        </div>
+        <div class="chat-body" id="chat-body">
+            {% for msg in request.session.chat_memory %}
+                {% if forloop.counter0|divisibleby:2 %}
+                    <div class="message sent">{{ msg }}</div>
+                {% else %}
+                    <div class="message received">{{ msg }}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <form id="chat-form" class="chat-footer" action="" method="post" enctype="application/x-www-form-urlencoded">
+            <input type="text" id="question" name="question" placeholder="Type a message...">
+            <button id="send-button" type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>

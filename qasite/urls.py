@@ -23,6 +23,8 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 
 def index(request):
+    request.session.flush()
+    
     embeddings = OpenAIEmbeddings(model='text-embedding-ada-002')
     database = Chroma(persist_directory='./database', embedding_function=embeddings)
     docs_info = database.get()
