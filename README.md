@@ -8,9 +8,9 @@
 
 ### Django Settings
 
-- Project Name: qasite
+- Project Name: `qasite`
 
-- App Name: chat
+- App Name: `chat`
 
 ### 문서 DB 구축
 
