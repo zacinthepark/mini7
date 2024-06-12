@@ -67,7 +67,8 @@ def chat(request):
         if 'chat_memory' not in request.session:
             request.session['chat_memory'] = []
         
-        return render(request, 'chat/index.html')
+        # return render(request, 'chat/index.html')
+        return render(request, 'chat/test.html')
     
 #저장된 데이터 불러오기
 def index(request):

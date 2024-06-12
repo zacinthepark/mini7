@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #000000;
+}
+
+.leftpart {
+    width: 10%;
+    height: 100vh;
+    background-color: #000000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.leftpart button {
+    background-color: #2F4F4F;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.leftpart button:hover {
+    background-color: #4f7878;
+}
+
+.middlepart {
+    width: 90%;
+    height: 100vh;
+    background-color: #202020;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.left-section,
+.right-section {
+    width: 20%;
+    background-color: #202020;
+}
+
+.center-section {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chat-header {
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-size: 20px;
+}
+
+.chat-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.message {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+}
+
+.message.sent {
+    background-color: #2F4F4F;
+    color: white;
+    align-self: flex-end;
+    text-align: right;
+}
+
+.message.received {
+    background-color: #2F4F4F;
+    color: white;
+    align-self: flex-start;
+    text-align: left;
+    padding: 10px;
+}
+
+.chat-footer {
+    display: flex;
+    padding: 10px;
+    background-color: #303030;
+    width: 50%;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2%;
+}
+
+.chat-footer textarea {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #303030;
+    color: white;
+    border: none;
+    resize: none;
+    overflow-y: hidden;
+    max-height: 7vh;
+    border: 1px solid #303030;
+}
+
+.chat-footer button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2F4F4F;
+    color: white;
+    cursor: pointer;
+}
+
+.chat-footer button:hover {
+    background-color: #4f7878;
+}
+
+.chat-footer button:disabled {
+    background-color: #c0c0c0;
+    cursor: not-allowed;
+}
+
+.loading img {
+    width: 30px;
+    height: 30px;
+}

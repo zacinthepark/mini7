@@ -19,7 +19,7 @@ body {
 }
 
 .chat-header {
-    background-color: #007bff;
+    background-color: #38B8B2;
     color: white;
     padding: 15px;
     border-top-left-radius: 10px;
@@ -44,7 +44,7 @@ body {
 }
 
 .message.sent {
-    background-color: #007bff;
+    background-color: #38B8B2;
     color: white;
     align-self: flex-end;
     text-align: right;
@@ -75,13 +75,13 @@ body {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: #38B8B2;
     color: white;
     cursor: pointer;
 }
 
 .chat-footer button:hover {
-    background-color: #0056b3;
+    background-color: #43DCDB;
 }
 
 .chat-footer button:disabled {
