@@ -8,49 +8,46 @@
     <link rel="stylesheet" href="{% static 'homepage.css' %}" /> 
 </head>
 <body class="main">
-    <div class="wrap mainwrap open sd_start">
-        <header>
-            <div class="inner h_max">
-                <h1>Aivle QA</h1>
-            </div>
-        </header>
-        <div class="maincontent">
-            <div class="button-container">
-                <button class="Button" data-content="content1">모집/선발</button>
-                <button class="Button" data-content="content2">교육/수강</button>
-                <button class="Button" data-content="content3">국민내일배움카드</button>
-                <button class="Button" data-content="content4">채용연계</button>
-                <button class="Button" data-content="content5">교육생 지원사항</button>
-                <button class="Button" data-content="content6">기타</button>
-                <button class="Button" data-link="{% url 'chat:chat' %}">💬<br>챗봇</button>
-            </div>
-            <div id="contentBox" class="hidden">
-                {% for qadata in qa %}
-                    <div id="{{ qadata.category }}" class="content hidden">
-                        <h2>{{ qadata.category }}</h2>
-                        <p>질문: {{ qadata.question }}</p>
-                        <p>답변: {{ qadata.answer }}</p>
-                    </div>
-                {% endfor %}
-            </div>
+    <header>
+        <div class="inner h_max">
+            <h1>Aivle QA</h1>
         </div>
-        <footer>
-            <div class="inner h_max">
-                <div class="brand">
-                    <ul>
-                        <li class="b1"><p>박정민</p></li>
-                        <li class="b2"><p>박진우</p></li>
-                        <li class="b3"><p>박현일</p></li>
-                        <li class="b4"><p>배지현</p></li>
-                        <li class="b5"><p>심연준</p></li>
-                        <li class="b6"><p>윤석일</p></li>
-                        <li class="b7"><p>이승연</p></li>
-                        <li class="b8"><p>이정호</p></li>
-                    </ul>
+    </header>
+    <div class="maincontent">
+        <div class="button-container">
+            <button class="Button" data-content="모집/선발">모집/선발</button>
+            <button class="Button" data-content="교육/수강">교육/수강</button>
+            <button class="Button" data-content="국민내일배움카드">국민내일배움카드</button>
+            <button class="Button" data-content="채용연계">채용연계</button>
+            <button class="Button" data-content="교육생 지원사항">교육생 지원사항</button>
+            <button class="Button" data-content="기타">기타</button>
+            <button class="Button" data-content='all'>전체</button>
+        </div>
+        <div id="contentBox">
+            {% for qadata in qa %}
+                <div class="content" data-category="{{ qadata.category }}">
+                    <h2>{{ qadata.category }}</h2>
+                    <p>질문: {{ qadata.question }}</p>
+                    <p>답변: {{ qadata.answer }}</p>
                 </div>
-            </div>
-        </footer>
+            {% endfor %}
+        </div>
     </div>
+    <button class="chatButton" id='chatbot-button' data-link="{% url 'chat:chat' %}">💬<br>챗봇</button>
+    <footer>
+        <div class="brand">
+            <ul>
+                <li class="b1"><p>박정민</p></li>
+                <li class="b2"><p>박진우</p></li>
+                <li class="b3"><p>박현일</p></li>
+                <li class="b4"><p>배지현</p></li>
+                <li class="b5"><p>심연준</p></li>
+                <li class="b6"><p>윤석일</p></li>
+                <li class="b7"><p>이승연</p></li>
+                <li class="b8"><p>이정호</p></li>
+            </ul>
+        </div> 
+    </footer>
     <script src="{% static 'homepage.js' %}"></script>
 </body>
 </html>
