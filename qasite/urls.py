@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
+from chat import views 
 
 from langchain.schema import Document
 from langchain.embeddings import OpenAIEmbeddings
@@ -50,7 +51,7 @@ def index(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
+    path('',views.index ,name='index'),
     path('chat/', include('chat.urls')),
 ]
 

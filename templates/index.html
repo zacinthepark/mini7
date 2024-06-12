@@ -5,7 +5,7 @@
     <title>AivleQA</title>
     <meta charset="utf-8"> 
     <link rel="icon" type="image/png" sizes="16x16" href="https://aivle.kt.co.kr/img/icon/favicon-16x16.png">   
-    <link rel="stylesheet" href="{% static 'homepage.css' %}" />    
+    <link rel="stylesheet" href="{% static 'homepage.css' %}" /> 
 </head>
 <body class="main">
     <div class="wrap mainwrap open sd_start">
@@ -14,31 +14,24 @@
                 <h1>Aivle QA</h1>
             </div>
         </header>
-        <div class="content">
-            <div class="inner h_max">
-                <div class="tab_box">
-                    <ul>
-                        <li class="tab tab1 on"><span><a href="#tab1"><p>모집/선발</p></a></span></li>
-                        <li class="tab tab2"><span><a href="#tab2"><p>교육/수강</p></a></span></li>
-                        <li class="tab tab3"><span><a href="#tab3"><p>국민내일배움카드</p></a></span></li>
-                        <li class="tab tab4"><span><a href="#tab4"><p>채용연계</p></a></span></li>
-                        <li class="tab tab5"><span><a href="#tab5"><p>교육생 지원사항</p></a></span></li>
-                        <li class="tab tab6 wh"><span><a href="#tab6"><p>기타</p></a></span></li>
-                    </ul>
-                </div>
-                <div class="con_box">
-                    <ul>
-                        <li class="box1 on ani"> ::before<div class=area></div></li>
-                        <li class="box2"><div class=area></div></li>
-                        <li class="box3"><div class=area></div></li>
-                        <li class="box4"><div class=area></div></li>
-                        <li class="box5"><div class=area></div></li>
-                        <li class="box6"><div class=area></div></li>
-                    </ul>
-                    <div class="side_txt">
-                        <p>가장 많이 하는 질문!</p>
+        <div class="maincontent">
+            <div class="button-container">
+                <button class="Button" data-content="content1">모집/선발</button>
+                <button class="Button" data-content="content2">교육/수강</button>
+                <button class="Button" data-content="content3">국민내일배움카드</button>
+                <button class="Button" data-content="content4">채용연계</button>
+                <button class="Button" data-content="content5">교육생 지원사항</button>
+                <button class="Button" data-content="content6">기타</button>
+                <button class="Button" data-link="{% url 'chat:chat' %}">💬<br>챗봇</button>
+            </div>
+            <div id="contentBox" class="hidden">
+                {% for qadata in qa %}
+                    <div id="{{ qadata.category }}" class="content hidden">
+                        <h2>{{ qadata.category }}</h2>
+                        <p>질문: {{ qadata.question }}</p>
+                        <p>답변: {{ qadata.answer }}</p>
                     </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
         <footer>
@@ -58,29 +51,6 @@
             </div>
         </footer>
     </div>
-
-    <!-- Chatbot button -->
-    <div class="chatbot-container">
-        <button class="chatbot-button" onclick="openChatbot()">💬</button>
-    </div>
-
-    <!-- Chatbot iframe or modal (hidden by default) -->
-    <div id="chatbot-modal" class="chatbot-modal">
-        <div class="chatbot-content">
-            <span class="close" onclick="closeChatbot()">&times;</span>
-            <!-- Embed your chatbot here, e.g., using an iframe -->
-            {% comment %} <iframe src="your-chatbot-url" frameborder="0"></iframe> {% endcomment %}
-        </div>
-    </div>
-
-    <script>
-        function openChatbot() {
-            document.getElementById("chatbot-modal").style.display = "block";
-        }
-
-        function closeChatbot() {
-            document.getElementById("chatbot-modal").style.display = "none";
-        }
-    </script>
+    <script src="{% static 'homepage.js' %}"></script>
 </body>
 </html>

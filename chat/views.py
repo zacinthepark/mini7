@@ -68,3 +68,31 @@ def chat(request):
             request.session['chat_memory'] = []
         
         return render(request, 'chat/index.html')
+    
+#저장된 데이터 불러오기
+def index(request):
+    request.session.flush()
+    
+    embeddings = OpenAIEmbeddings(model='text-embedding-ada-002')
+    database = Chroma(persist_directory='./database', embedding_function=embeddings)
+    docs_info = database.get()
+    metadatas = docs_info['metadatas']
+    contents = docs_info['documents']
+    
+    qa = []
+    
+    for i in range(len(contents)):
+        content_str = contents[i]
+        content_lst = content_str.split('\n')
+        q = content_lst[0]
+        a = content_lst[1]
+        cate = metadatas[i]['category']
+        data = {
+            'question': q, 
+            'answer': a, 
+            'category': cate
+        }
+        qa.append(data)
+    
+    return render(request, 'index.html', {'qa': qa})
+
