@@ -34,8 +34,8 @@ body {
     top: 10px;
     right: 10px;
     padding: 5px 10px;
-    background-color: #38B8B2;
-    color: white;
+    background-color: #ccd1d1;
+    color: black;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
@@ -44,7 +44,7 @@ body {
 }
 
 .rightpart button:hover {
-    background-color: #38B8B2;
+    background-color: #ccd1d1;
 }
 
 .middlepart {
