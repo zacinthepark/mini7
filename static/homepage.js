@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // 버튼이 '전체'일 경우 모든 컨텐츠를 표시합니다.
             if (category === 'all') {
                 contents.forEach(content => {
+                    displaySortedContent();
                     content.style.display = "block";
                 });
             } else {
@@ -25,16 +26,39 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
+    function displaySortedContent() {
+        // 카테고리별로 콘텐츠를 정렬하여 표시
+        const categories = {};
+        const contents = contentBox.querySelectorAll('.content');
+        
+        contents.forEach(content => {
+            const category = content.getAttribute('data-category');
+            if (!categories[category]) {
+                categories[category] = [];
+            }
+            categories[category].push(content);
+        });
+
+        // 기존 콘텐츠 삭제
+        contentBox.innerHTML = '';
+
+        // 카테고리별로 정렬된 콘텐츠를 추가
+        for (const category in categories) {
+            categories[category].forEach(content => {
+                contentBox.appendChild(content);
+            });
+        }
+    }
 
     const chatbotButton = document.getElementById('chatbot-button');
+    
     if (chatbotButton) {
         chatbotButton.addEventListener('click', function() {
-            const chatbotURL = this.getAttribute('data-link');
-            window.open(chatbotURL,'_blank', 'window_name','width=430,height=500,location=no,status=no,scrollbars=yes');
-            
+            window.location.href = chatbotButton.getAttribute('data-link');
         });
     }
 });
+
 
 
 
