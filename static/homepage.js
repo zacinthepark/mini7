@@ -30,7 +30,8 @@ document.addEventListener("DOMContentLoaded", function() {
     if (chatbotButton) {
         chatbotButton.addEventListener('click', function() {
             const chatbotURL = this.getAttribute('data-link');
-            window.open(chatbotURL, '_blank');
+            window.open(chatbotURL,'_blank', 'window_name','width=430,height=500,location=no,status=no,scrollbars=yes');
+            
         });
     }
 });
