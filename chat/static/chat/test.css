@@ -9,15 +9,26 @@ body {
 }
 
 .leftpart {
-    width: 10%;
+    width: 15%;
     height: 100vh;
     background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center; /* 가운데 정렬을 위해 추가 */
+    position: fixed; /* 화면에 고정 */
+    top: 0;
+    left: 0;
+    padding-top: 20px; /* 상단 여백 추가 */
+    box-sizing: border-box; /* 패딩이 요소의 전체 크기에 포함되도록 box-sizing 설정 */
+    z-index: 1000; /* 다른 요소 위에 위치하도록 z-index 설정 */
+}
+.leftpart img {
+    height: 30px; /* 로고 이미지의 높이를 원하는 크기로 조정 */
+    margin-right: 10px; /* 로고 이미지 오른쪽 여백 설정 */
 }
 
-.leftpart button {
+.rightpart button {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -31,7 +42,7 @@ body {
     cursor: pointer;
 }
 
-.leftpart button:hover {
+.rightpart button:hover {
     background-color: #38B8B2;
 }
 
@@ -85,6 +96,7 @@ body {
     color: white;
     align-self: flex-end;
     text-align: right;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
 }
 
 .message.received {
@@ -93,7 +105,9 @@ body {
     align-self: flex-start;
     text-align: left;
     padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
 }
+
 
 .chat-footer {
     display: flex;
