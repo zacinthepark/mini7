@@ -14,26 +14,30 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
-from chat import views 
+from chat import views
 
 from langchain.schema import Document
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 
+
 def index(request):
     request.session.flush()
-    
+
     embeddings = OpenAIEmbeddings(model='text-embedding-ada-002')
-    database = Chroma(persist_directory='./database', embedding_function=embeddings)
+    database = Chroma(persist_directory='./database',
+                      embedding_function=embeddings)
     docs_info = database.get()
     metadatas = docs_info['metadatas']
     contents = docs_info['documents']
-    
+
     qa = []
-    
+
     for i in range(len(contents)):
         content_str = contents[i]
         content_lst = content_str.split('\n')
@@ -41,22 +45,22 @@ def index(request):
         a = content_lst[1]
         cate = metadatas[i]['category']
         data = {
-            'question': q, 
-            'answer': a, 
+            'question': q,
+            'answer': a,
             'category': cate
         }
         qa.append(data)
-    
+
     return render(request, 'index.html', {'qa': qa})
 
+
 urlpatterns = [
+    path('', views.main_page, name='main_page'),
     path('admin/', admin.site.urls),
-    path('',views.index ,name='index'),
+    path('qa/', views.index, name='index'),
     path('chat/', include('chat.urls')),
 ]
 
-from django.conf import settings
-from django.conf.urls.static import static
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

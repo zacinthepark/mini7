@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-{% load static %}
-<html>
-<head>
-    <title>AivleQA</title>
-    <meta charset="utf-8"> 
-    <link rel="icon" type="image/png" sizes="16x16" href="https://aivle.kt.co.kr/img/icon/favicon-16x16.png">   
-    <link rel="stylesheet" href="{% static 'homepage.css' %}" /> 
-    <script src="https://cdn.lordicon.com/lordicon.js"></script>
-</head>
-<body class="main">
-    <header>
-        <div class="inner h_max">
-            <h1>Aivle Q&A</h1>
-        </div>
-    </header>
-    <div class="maincontent">
+{% extends 'base.html' %}
+
+{% block title %}Aivle Q&A{% endblock %}
+
+{% block content %}
         <div class="button-container">
             <button class="Button" data-content='all'>전체</button>
             <button class="Button" data-content="모집/선발">모집/선발</button>
@@ -33,23 +21,5 @@
                 </div>
             {% endfor %}
         </div>
-    </div>
-    <button class="chatButton" id="chatbot-button" data-link="{% url 'chat:chat' %}">
-        <lord-icon
-            src="https://cdn.lordicon.com/fdxqrdfe.json"
-            trigger="hover"
-            colors="primary:#ffffff"
-            style="width:40px;height:40px">
-        </lord-icon>
-        <span>챗봇</span>
-    </button>
-    <footer>
-        <div class="brand">
-            <ul>
-                <li class="b1"><p>KT Aivle AI 2반 6조</p></li>
-            </ul>
-        </div> 
-    </footer>
-    <script src="{% static 'homepage.js' %}"></script>
-</body>
-</html>
+        {% endblock %}
+   
