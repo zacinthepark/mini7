@@ -5,20 +5,35 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #000000;
+    background-color: #F5F5F5;
 }
 
 .leftpart {
-    width: 10%;
+    width: 15%;
     height: 100vh;
-    background-color: #000000;
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center; /* 가운데 정렬을 위해 추가 */
+    position: fixed; /* 화면에 고정 */
+    top: 0;
+    left: 0;
+    padding-top: 20px; /* 상단 여백 추가 */
+    box-sizing: border-box; /* 패딩이 요소의 전체 크기에 포함되도록 box-sizing 설정 */
+    z-index: 1000; /* 다른 요소 위에 위치하도록 z-index 설정 */
+}
+.leftpart img {
+    height: 30px; /* 로고 이미지의 높이를 원하는 크기로 조정 */
+    margin-right: 10px; /* 로고 이미지 오른쪽 여백 설정 */
 }
 
-.leftpart button {
-    background-color: #2F4F4F;
+.rightpart button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: #38B8B2;
     color: white;
     border: none;
     border-radius: 5px;
@@ -27,14 +42,14 @@ body {
     cursor: pointer;
 }
 
-.leftpart button:hover {
-    background-color: #4f7878;
+.rightpart button:hover {
+    background-color: #38B8B2;
 }
 
 .middlepart {
     width: 90%;
     height: 100vh;
-    background-color: #202020;
+    background-color: #F5F5F5;
     display: flex;
     flex-direction: row;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -42,12 +57,12 @@ body {
 
 .left-section,
 .right-section {
-    width: 20%;
-    background-color: #202020;
+    width: 10%;
+    background-color: #F5F5F5;
 }
 
 .center-section {
-    width: 60%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -77,25 +92,28 @@ body {
 }
 
 .message.sent {
-    background-color: #2F4F4F;
+    background-color: #38B8B2;
     color: white;
     align-self: flex-end;
     text-align: right;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
 }
 
 .message.received {
-    background-color: #2F4F4F;
+    background-color: #38B8B2;
     color: white;
     align-self: flex-start;
     text-align: left;
     padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
 }
+
 
 .chat-footer {
     display: flex;
     padding: 10px;
-    background-color: #303030;
-    width: 50%;
+    background-color: #38B8B2;
+    width: 70%;
     border-radius: 10px;
     align-items: center;
     justify-content: center;
@@ -107,26 +125,26 @@ body {
     padding: 10px;
     border-radius: 5px;
     margin-right: 10px;
-    background-color: #303030;
-    color: white;
+    background-color: white;
+    color: gray;
     border: none;
     resize: none;
     overflow-y: hidden;
     max-height: 7vh;
-    border: 1px solid #303030;
+    border: 1px solid white;
 }
 
 .chat-footer button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #2F4F4F;
-    color: white;
+    background-color: white;
+    color: gray;
     cursor: pointer;
 }
 
 .chat-footer button:hover {
-    background-color: #4f7878;
+    background-color: #c0c0c0;
 }
 
 .chat-footer button:disabled {
